@@ -17,8 +17,6 @@ The gulp file packages all javascript files using browserify meaning various thi
 
 I've structured the file system to start by loading main.js, from there it loads angular controller code from `src/angular-pages`
 
-~Spencer
-
 
 #Destroying
 
