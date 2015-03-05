@@ -1,6 +1,6 @@
 # Athius
 http://aerracenmedia.github.io/AthiusInteractiveMap/app/
----------------
+
 ##Building
 After you have cloned this repository you can run `npm install` to fetch dependencies and initiate the gulpFile.
 This will package all the code in /src into `app/lib/all.css` and `app/lib/build.min.js` (build.js for non- minified version).
@@ -19,7 +19,6 @@ I've structured the file system to start by loading main.js, from there it loads
 
 ~Spencer
 
-------------------------
 
 #Destroying
 
