@@ -1,0 +1,51 @@
+/* file could be split up if it becomes any more hecktic */
+
+#map {
+  position:relative;
+  border:10px solid black;
+  height:700px;
+  width:1000px;
+  overflow:hidden;
+}
+
+$icon-height:30px;
+
+#scroller-container {
+  position:relative;
+  padding-top:$icon-height/4;
+  text-align:center;
+  height:100%;
+  width:30%;
+  background:green;
+}
+
+.info-icon {
+  top:0px;
+  position:absolute;
+  left:5px;
+  height:$icon-height;
+  width:auto;
+}
+
+#map-scroller {
+  position:relative;
+  top:$icon-height;
+  height:643px;
+  width:100%;
+  background:blue;
+  overflow-x:hidden;
+  overflow-y:scroll;
+}
+
+#interactive {
+  position:absolute;
+  right:0px;
+  top:0px;
+  width:70%;
+  height:100%;
+}
+
+#interactive img {
+  width:100%;
+  height:auto;
+}

@@ -1,0 +1,16 @@
+<div id="map">
+    <div id="scroller-container">
+        <span>{{info.name}}<span>
+        <img class="info-icon" ng-src="img/{{info.icon}}"/>
+        <!-- left scrolling part -->
+        <div id="map-scroller">
+            <div ng-repeat="info in info.items">
+                <info-item>
+            </div>
+        </div>
+    </div>
+    <!-- actual map and interactivity -->
+    <div id="interactive">
+        <img src="img/map.png" />
+    </div>
+</div>

@@ -1,9 +1,11 @@
 "use strict";
 
+require("./map/map.js");
+
 /* homepage */
 
 
-angular.module("home", [])
+angular.module("home", ["map"])
 .controller("homeController", ["$scope", function($scope){
 
 }])
