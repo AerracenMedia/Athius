@@ -28,6 +28,6 @@ node_modules
 .lock-wscript
 
 #Builds
-app/lib/build.min.js
-app/lib/build.js
-app/lib/all.css
+#app/lib/build.min.js
+#app/lib/build.js
+#app/lib/all.css
