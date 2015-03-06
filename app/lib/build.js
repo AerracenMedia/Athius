@@ -1508,7 +1508,7 @@ angular.module("map", ["infoItem"])
 
 require("./angular-pages/athius.js");
 
-}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_e1bb19a5.js","/")
+}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_ea1b1b85.js","/")
 },{"./angular-pages/athius.js":5,"VCmEsw":4,"buffer":1}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 "use strict";
@@ -1518,6 +1518,7 @@ require("./angular-pages/athius.js");
 module.exports=function(zoom){
 
   var map=document.getElementById("interactive");
+  var mapImage=document.querySelector("#interactive img");
   var clicking=false;
   var lastMouseMove=null;
 
@@ -1559,11 +1560,10 @@ module.exports=function(zoom){
   function mousewheel(e){
     e.preventDefault();
     zoom.amount+=e.wheelDeltaY/300;
-    debugger;
     if (zoom.amount<zoom.min) {zoom.amount=zoom.min;}
     else{
-      zoom.x -= (e.layerX-(map.clientWidth/2));
-      zoom.y -= (e.layerY-(map.clientHeight/2));
+      zoom.x -= (e.clientX-(map.clientWidth/2));
+      zoom.y -= (e.clientY-(map.clientHeight/2));
     }
     zoom.update();
   }

@@ -51,7 +51,4 @@
 
 #interactive img {
   width: 100%;
-  height: auto;
-  -webkit-transition: -webkit-transform 0.5s;
-  /* For Safari 3.1 to 6.0 */
-  transition: transform 0.5s; }
+  height: auto; }

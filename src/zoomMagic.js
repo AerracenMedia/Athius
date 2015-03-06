@@ -46,11 +46,10 @@ module.exports=function(zoom){
   function mousewheel(e){
     e.preventDefault();
     zoom.amount+=e.wheelDeltaY/300;
-    debugger;
     if (zoom.amount<zoom.min) {zoom.amount=zoom.min;}
     else{
-      zoom.x -= (e.layerX-(map.clientWidth/2));
-      zoom.y -= (e.layerY-(map.clientHeight/2));
+      zoom.x -= (e.clientX-(map.clientWidth/2));
+      zoom.y -= (e.clientY-(map.clientHeight/2));
     }
     zoom.update();
   }
