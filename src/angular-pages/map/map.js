@@ -16,10 +16,10 @@ angular.module("map", ["infoItem"])
   $scope.zoom={
     x:0,
     y:0,
-    amount:0,
-    min:0,
+    amount:1,
+    min:1,
     update:function(){
-      var amount=this.amount/300;
+      var amount=this.amount;
       var style="translate("+this.x+"px,"+this.y+"px) scale("+amount+","+amount+")";
 
       $scope.$apply(function(){

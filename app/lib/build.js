@@ -1463,10 +1463,10 @@ angular.module("map", ["infoItem"])
   $scope.zoom={
     x:0,
     y:0,
-    amount:0,
-    min:0,
+    amount:1,
+    min:1,
     update:function(){
-      var amount=this.amount/300;
+      var amount=this.amount;
       var style="translate("+this.x+"px,"+this.y+"px) scale("+amount+","+amount+")";
 
       $scope.$apply(function(){
@@ -1508,7 +1508,7 @@ angular.module("map", ["infoItem"])
 
 require("./angular-pages/athius.js");
 
-}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_ecc9dfe6.js","/")
+}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_e1bb19a5.js","/")
 },{"./angular-pages/athius.js":5,"VCmEsw":4,"buffer":1}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 "use strict";
@@ -1518,18 +1518,57 @@ require("./angular-pages/athius.js");
 module.exports=function(zoom){
 
   var map=document.getElementById("interactive");
+  var clicking=false;
+  var lastMouseMove=null;
 
   map.addEventListener("mousewheel", mousewheel);
 	map.addEventListener("DOMMouseScroll", mousewheel);
+  map.addEventListener("mousedown", function(e){
+    e.preventDefault();
+    if (e.button===0){
+      clicking=true;
+      console.log("mousedown");
+    }
+  });
+  map.addEventListener("mouseup", function(e){
+    e.preventDefault();
+    if (e.button===0){
+      clicking=false;
+      lastMouseMove=null;
+      console.log("mouseup");
+    }
+  });
+  map.addEventListener("mouseout", function(e){
+    clicking=false;
+    lastMouseMove=null;
+    console.log("mouseout");
+  });
+  map.addEventListener("mousemove", function(e){
+    e.preventDefault();
+    if (clicking){
+      if (lastMouseMove){
+        zoom.x+=e.layerX-lastMouseMove.x;
+        zoom.y+=e.layerY-lastMouseMove.y;
+        zoom.update();
+      }
+      lastMouseMove={x:e.layerX, y:e.layerY};
+    }
+  });
+
 
   function mousewheel(e){
     e.preventDefault();
-    zoom.x-=e.layerX;
-    zoom.y-=e.layerY;
-    zoom.amount+=e.wheelDeltaY;
-    if (zoom.amount<zoom.min) zoom.amount=zoom.min;
+    zoom.amount+=e.wheelDeltaY/300;
+    debugger;
+    if (zoom.amount<zoom.min) {zoom.amount=zoom.min;}
+    else{
+      zoom.x -= (e.layerX-(map.clientWidth/2));
+      zoom.y -= (e.layerY-(map.clientHeight/2));
+    }
     zoom.update();
   }
+
+
 
 };
 
