@@ -50,6 +50,9 @@ module.exports=function(zoom){
     else{
       //zoom.x -= (e.clientX-(map.clientWidth/2));
       //zoom.y -= (e.clientY-(map.clientHeight/2));
+      //var direction=Math.atan((e.layerX - zoom.x) / (e.layerY - zoom.y));
+      //zoom.x += Math.cos(direction) * (zoom.x - e.layerX);
+      //zoom.y += Math.sin(direction) * (zoom.y - e.layerY);
     }
     zoom.update();
   }

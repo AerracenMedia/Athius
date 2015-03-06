@@ -1453,10 +1453,16 @@ require("./../../zoomMagic");
 angular.module("map", ["infoItem"])
 .controller("mapController", ["$scope", function($scope){
 
-  $scope.mapStyle={
-    "-ms-transform":"translate(0px,0px) scale(1,1)",
-    "-webkit-transform":"translate(0px,0px) scale(1,1)",
-    "transform":"translate(0px,0px) scale(1,1)"
+  $scope.mapScale={
+    "-ms-transform":"scale(1,1)",
+    "-webkit-transform":"scale(1,1)",
+    "transform":"scale(1,1)"
+  };
+
+  $scope.mapPosition={
+    "-ms-transform":"translate(0px,0px)",
+    "-webkit-transform":"translate(0px,0px)",
+    "transform":"translate(0px,0px)"
   };
 
 
@@ -1467,12 +1473,17 @@ angular.module("map", ["infoItem"])
     min:1,
     update:function(){
       var amount=this.amount;
-      var style="translate("+this.x+"px,"+this.y+"px) scale("+amount+","+amount+")";
+      var scale="scale("+amount+","+amount+")";
+      var position="translate("+this.x+"px,"+this.y+"px)";
 
       $scope.$apply(function(){
-        $scope.mapStyle["-ms-transform"]=style;
-        $scope.mapStyle["-webkit-transform"]=style;
-        $scope.mapStyle.transform=style;
+        $scope.mapScale["-ms-transform"]=scale;
+        $scope.mapScale["-webkit-transform"]=scale;
+        $scope.mapScale.transform=scale;
+
+        $scope.mapPosition["-ms-transform"]=position;
+        $scope.mapPosition["-webkit-transform"]=position;
+        $scope.mapPosition.transform=position;
       });
     }
   };
@@ -1508,7 +1519,7 @@ angular.module("map", ["infoItem"])
 
 require("./angular-pages/athius.js");
 
-}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_f30d3611.js","/")
+}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_6c405cfa.js","/")
 },{"./angular-pages/athius.js":5,"VCmEsw":4,"buffer":1}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 "use strict";
@@ -1563,6 +1574,9 @@ module.exports=function(zoom){
     else{
       //zoom.x -= (e.clientX-(map.clientWidth/2));
       //zoom.y -= (e.clientY-(map.clientHeight/2));
+      //var direction=Math.atan((e.layerX - zoom.x) / (e.layerY - zoom.y));
+      //zoom.x += Math.cos(direction) * (zoom.x - e.layerX);
+      //zoom.y += Math.sin(direction) * (zoom.y - e.layerY);
     }
     zoom.update();
   }

@@ -11,6 +11,8 @@
     </div>
     <!-- actual map and interactivity -->
     <div id="interactive">
-        <img id="map-image" ng-style="mapStyle" ng-src="{{mapImage}}" draggable="false" />
+        <div id="image-position" ng-style="mapPosition">
+            <img ng-style="mapScale" ng-src="{{mapImage}}" />
+        </div>
     </div>
 </div>

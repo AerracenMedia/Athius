@@ -6,10 +6,16 @@ require("./../../zoomMagic");
 angular.module("map", ["infoItem"])
 .controller("mapController", ["$scope", function($scope){
 
-  $scope.mapStyle={
-    "-ms-transform":"translate(0px,0px) scale(1,1)",
-    "-webkit-transform":"translate(0px,0px) scale(1,1)",
-    "transform":"translate(0px,0px) scale(1,1)"
+  $scope.mapScale={
+    "-ms-transform":"scale(1,1)",
+    "-webkit-transform":"scale(1,1)",
+    "transform":"scale(1,1)"
+  };
+
+  $scope.mapPosition={
+    "-ms-transform":"translate(0px,0px)",
+    "-webkit-transform":"translate(0px,0px)",
+    "transform":"translate(0px,0px)"
   };
 
 
@@ -20,12 +26,17 @@ angular.module("map", ["infoItem"])
     min:1,
     update:function(){
       var amount=this.amount;
-      var style="translate("+this.x+"px,"+this.y+"px) scale("+amount+","+amount+")";
+      var scale="scale("+amount+","+amount+")";
+      var position="translate("+this.x+"px,"+this.y+"px)";
 
       $scope.$apply(function(){
-        $scope.mapStyle["-ms-transform"]=style;
-        $scope.mapStyle["-webkit-transform"]=style;
-        $scope.mapStyle.transform=style;
+        $scope.mapScale["-ms-transform"]=scale;
+        $scope.mapScale["-webkit-transform"]=scale;
+        $scope.mapScale.transform=scale;
+
+        $scope.mapPosition["-ms-transform"]=position;
+        $scope.mapPosition["-webkit-transform"]=position;
+        $scope.mapPosition.transform=position;
       });
     }
   };
