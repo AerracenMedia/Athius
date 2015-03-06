@@ -1,10 +1,15 @@
 /* file could be split up if it becomes any more hecktic */
 
+$map-max-height:600px;
+$map-min-height:200px;
+
 #map {
   position:relative;
-  border:10px solid black;
-  height:700px;
-  width:1000px;
+  //border:10px solid black;
+  height:100%;
+  max-height:$map-max-height;
+  min-height:$map-min-height;
+  width:100%;
   overflow:hidden;
 }
 
@@ -16,12 +21,12 @@ $icon-height:30px;
   text-align:center;
   height:100%;
   width:30%;
-  background:green;
+  background:#66CCFF;
   z-index:2;
 }
 
 .info-icon {
-  top:0px;
+  top:5px;
   position:absolute;
   left:5px;
   height:$icon-height;
@@ -31,9 +36,11 @@ $icon-height:30px;
 #map-scroller {
   position:relative;
   top:$icon-height;
-  height:645px;
+  height:100%;
+  min-height:$map-min-height;
+  max-height:$map-max-height;
   width:100%;
-  background:blue;
+  background:linear-gradient(to left, white, #E6E6E6, white);
   overflow-x:hidden;
   overflow-y:scroll;
 }

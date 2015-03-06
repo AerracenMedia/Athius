@@ -31,3 +31,5 @@ node_modules
 #app/lib/build.min.js
 #app/lib/build.js
 #app/lib/all.css
+app/img/Thumbs.db
+app/lib/build.min.js
