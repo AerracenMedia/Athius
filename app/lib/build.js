@@ -1448,9 +1448,38 @@ angular.module("infoItem", [])
 "use strict";
 
 require("./infoItem");
+require("./../../zoomMagic");
 
 angular.module("map", ["infoItem"])
 .controller("mapController", ["$scope", function($scope){
+
+  $scope.mapStyle={
+    "-ms-transform":"translate(0px,0px) scale(1,1)",
+    "-webkit-transform":"translate(0px,0px) scale(1,1)",
+    "transform":"translate(0px,0px) scale(1,1)"
+  };
+
+
+  $scope.zoom={
+    x:0,
+    y:0,
+    amount:0,
+    min:0,
+    update:function(){
+      var amount=this.amount/300;
+      var style="translate("+this.x+"px,"+this.y+"px) scale("+amount+","+amount+")";
+
+      $scope.$apply(function(){
+        debugger;
+        $scope.mapStyle["-ms-transform"]=style;
+        $scope.mapStyle["-webkit-transform"]=style;
+        $scope.mapStyle.transform=style;
+      });
+    }
+  };
+
+  var zoomMagic=require("./../../zoomMagic")($scope.zoom);
+
   $scope.info={
     name:"Area B",
     icon:"icon.png",
@@ -1463,6 +1492,7 @@ angular.module("map", ["infoItem"])
       "Maby next commit these'll be loaded from json, for now I gottsa feed lambs"
     ]
   };
+  $scope.mapImage="img/caterpie.svg";
 }])
 .directive("map", function(){
   return {
@@ -1473,11 +1503,36 @@ angular.module("map", ["infoItem"])
 });
 
 }).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/angular-pages\\map\\map.js","/angular-pages\\map")
-},{"./infoItem":7,"VCmEsw":4,"buffer":1}],9:[function(require,module,exports){
+},{"./../../zoomMagic":10,"./infoItem":7,"VCmEsw":4,"buffer":1}],9:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 "use strict";
 
 require("./angular-pages/athius.js");
 
-}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_5956c5a7.js","/")
-},{"./angular-pages/athius.js":5,"VCmEsw":4,"buffer":1}]},{},[9])
+}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a5d00a9d.js","/")
+},{"./angular-pages/athius.js":5,"VCmEsw":4,"buffer":1}],10:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+"use strict";
+
+/* code for zooming the map */
+
+module.exports=function(zoom){
+
+  var map=document.getElementById("interactive");
+
+  map.addEventListener("mousewheel", mousewheel);
+	map.addEventListener("DOMMouseScroll", mousewheel);
+
+  function mousewheel(e){
+    e.preventDefault();
+    zoom.x-=e.layerX;
+    zoom.y-=e.layerY;
+    zoom.amount+=e.wheelDeltaY;
+    if (zoom.amount<zoom.min) zoom.amount=zoom.min;
+    zoom.update();
+  }
+
+};
+
+}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/zoomMagic.js","/")
+},{"VCmEsw":4,"buffer":1}]},{},[9])

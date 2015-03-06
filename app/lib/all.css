@@ -30,7 +30,7 @@
 #map-scroller {
   position: relative;
   top: 30px;
-  height: 643px;
+  height: 645px;
   width: 100%;
   background: blue;
   overflow-x: hidden;

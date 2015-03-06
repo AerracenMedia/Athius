@@ -1,9 +1,38 @@
 "use strict";
 
 require("./infoItem");
+require("./../../zoomMagic");
 
 angular.module("map", ["infoItem"])
 .controller("mapController", ["$scope", function($scope){
+
+  $scope.mapStyle={
+    "-ms-transform":"translate(0px,0px) scale(1,1)",
+    "-webkit-transform":"translate(0px,0px) scale(1,1)",
+    "transform":"translate(0px,0px) scale(1,1)"
+  };
+
+
+  $scope.zoom={
+    x:0,
+    y:0,
+    amount:0,
+    min:0,
+    update:function(){
+      var amount=this.amount/300;
+      var style="translate("+this.x+"px,"+this.y+"px) scale("+amount+","+amount+")";
+
+      $scope.$apply(function(){
+        debugger;
+        $scope.mapStyle["-ms-transform"]=style;
+        $scope.mapStyle["-webkit-transform"]=style;
+        $scope.mapStyle.transform=style;
+      });
+    }
+  };
+
+  var zoomMagic=require("./../../zoomMagic")($scope.zoom);
+
   $scope.info={
     name:"Area B",
     icon:"icon.png",
@@ -16,6 +45,7 @@ angular.module("map", ["infoItem"])
       "Maby next commit these'll be loaded from json, for now I gottsa feed lambs"
     ]
   };
+  $scope.mapImage="img/caterpie.svg";
 }])
 .directive("map", function(){
   return {
