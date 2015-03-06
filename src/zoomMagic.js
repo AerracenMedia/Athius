@@ -48,8 +48,8 @@ module.exports=function(zoom){
     zoom.amount+=e.wheelDeltaY/300;
     if (zoom.amount<zoom.min) {zoom.amount=zoom.min;}
     else{
-      zoom.x -= (e.clientX-(map.clientWidth/2));
-      zoom.y -= (e.clientY-(map.clientHeight/2));
+      //zoom.x -= (e.clientX-(map.clientWidth/2));
+      //zoom.y -= (e.clientY-(map.clientHeight/2));
     }
     zoom.update();
   }
