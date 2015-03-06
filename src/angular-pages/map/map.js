@@ -23,7 +23,6 @@ angular.module("map", ["infoItem"])
       var style="translate("+this.x+"px,"+this.y+"px) scale("+amount+","+amount+")";
 
       $scope.$apply(function(){
-        debugger;
         $scope.mapStyle["-ms-transform"]=style;
         $scope.mapStyle["-webkit-transform"]=style;
         $scope.mapStyle.transform=style;

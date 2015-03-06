@@ -17,6 +17,7 @@ $icon-height:30px;
   height:100%;
   width:30%;
   background:green;
+  z-index:2;
 }
 
 .info-icon {
@@ -48,4 +49,6 @@ $icon-height:30px;
 #interactive img {
   width:100%;
   height:auto;
+  -webkit-transition: -webkit-transform 0.5s;  /* For Safari 3.1 to 6.0 */
+  transition: transform 0.5s;
 }

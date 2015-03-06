@@ -1470,7 +1470,6 @@ angular.module("map", ["infoItem"])
       var style="translate("+this.x+"px,"+this.y+"px) scale("+amount+","+amount+")";
 
       $scope.$apply(function(){
-        debugger;
         $scope.mapStyle["-ms-transform"]=style;
         $scope.mapStyle["-webkit-transform"]=style;
         $scope.mapStyle.transform=style;
@@ -1509,7 +1508,7 @@ angular.module("map", ["infoItem"])
 
 require("./angular-pages/athius.js");
 
-}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a5d00a9d.js","/")
+}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_ecc9dfe6.js","/")
 },{"./angular-pages/athius.js":5,"VCmEsw":4,"buffer":1}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 "use strict";

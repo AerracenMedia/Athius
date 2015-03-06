@@ -18,7 +18,8 @@
   text-align: center;
   height: 100%;
   width: 30%;
-  background: green; }
+  background: green;
+  z-index: 2; }
 
 .info-icon {
   top: 0px;
@@ -45,4 +46,7 @@
 
 #interactive img {
   width: 100%;
-  height: auto; }
+  height: auto;
+  -webkit-transition: -webkit-transform 0.5s;
+  /* For Safari 3.1 to 6.0 */
+  transition: transform 0.5s; }
