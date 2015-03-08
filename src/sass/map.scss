@@ -53,9 +53,18 @@ $icon-height:30px;
   height:100%;
 }
 
-#interactive div {
+#event-handler{
+  width:100%;
+  height:100%;
+  position:absolute;
+  z-index:5;
+}
+
+#interactive div:not([id="event-handler"]) {
   width:100%;
   height:auto;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
 }
 
 #interactive img {

@@ -1519,7 +1519,7 @@ angular.module("map", ["infoItem"])
 
 require("./angular-pages/athius.js");
 
-}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_d27920ee.js","/")
+}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_2f86c6d9.js","/")
 },{"./angular-pages/athius.js":5,"VCmEsw":4,"buffer":1}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 "use strict";
@@ -1528,14 +1528,14 @@ require("./angular-pages/athius.js");
 
 module.exports=function(zoom){
 
-  var map=document.getElementById("event-handler");
-  var mapImage=document.querySelector("#interactive div:not([id='event-handler']");
+  var map=document.getElementById("interactive");
+  var mapImage=document.querySelector("#interactive div");
+  var mapVector=document.querySelector("#interactive div img");
   var clicking=false;
   var lastMouseMove=null;
 
-  map.addEventListener("mousewheel", mousewheel, true);
-	map.addEventListener("DOMMouseScroll", mousewheel, true);
-
+  map.addEventListener("mousewheel", mousewheel);
+	map.addEventListener("DOMMouseScroll", mousewheel);
   map.addEventListener("mousedown", function(e){
     e.preventDefault();
     if (e.button===0){
@@ -1569,18 +1569,14 @@ module.exports=function(zoom){
 
   function mousewheel(e){
     e.preventDefault();
-    var oldCoorOnImage=getLayerPositionOnImage(e, zoom);
-    var zoomDelta=(e.wheelDeltaY<0) ? -1:1;///200;
-    zoom.amount+=zoomDelta;
+    var oldImageCoor=getImageCoordinates(e, zoom);
+    zoom.amount+=1(e.wheelDeltaY<0) ? -1:1;///200;
     if (zoom.amount<zoom.min) {zoom.amount=zoom.min;}
     else{
-      var imageCoor=getImageCoordinates(e, zoom);
-      zoom.x -= imageCoor.x;
-      zoom.y -= imageCoor.y;
-      var coorOnImage=getLayerPositionOnImage(e, zoom, true);
-      console.log(coorOnImage);
-      zoom.x -= oldCoorOnImage.x*zoomDelta;
-      zoom.y -= oldCoorOnImage.y*zoomDelta;
+      var imageCoor=getImageCoordinates(e, zoom),
+          layer=getLayer(e);
+      zoom.x -= imageCoor.x
+      zoom.y -= imageCoor.y
     }
     zoom.update();
   }
@@ -1600,26 +1596,16 @@ module.exports=function(zoom){
     x = e.clientX - x;
     y = e.clientY - y;
 
-    return { x:  e.offsetX, y: e.offsetY };
+    return { x:  e.layerX, y: e.layerY };
 
   }
 
   function getImageCoordinates(e, zoom){
     /* image real position with css transform (top-left origin) */
     return {
-      x:zoom.x-(((mapImage.clientWidth *zoom.amount)-mapImage.clientWidth )/2),
-      y:zoom.y-(((mapImage.clientHeight*zoom.amount)-mapImage.clientHeight)/2)
+      x:zoom.x-(((mapVector.clientWidth *zoom.amount)-mapVector.clientWidth )/2),
+      y:zoom.y-(((mapVector.clientHeight*zoom.amount)-mapVector.clientHeight)/2)
     };
-  }
-
-  function getLayerPositionOnImage (e, zoom, log){
-    var imageCoor=getImageCoordinates(e, zoom),
-        layer=getLayer(e);
-    if (log){
-      console.log(imageCoor);
-      console.log(layer);
-    }
-    return {x:layer.x-imageCoor.x, y:layer.y-imageCoor.y}
   }
 
 };
