@@ -1519,7 +1519,7 @@ angular.module("map", ["infoItem"])
 
 require("./angular-pages/athius.js");
 
-}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_d27920ee.js","/")
+}).call(this,require("VCmEsw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_72619f45.js","/")
 },{"./angular-pages/athius.js":5,"VCmEsw":4,"buffer":1}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 "use strict";
@@ -1570,6 +1570,8 @@ module.exports=function(zoom){
   function mousewheel(e){
     e.preventDefault();
     var oldCoorOnImage=getLayerPositionOnImage(e, zoom);
+    console.log(oldCoorOnImage);
+
     var zoomDelta=(e.wheelDeltaY<0) ? -1:1;///200;
     zoom.amount+=zoomDelta;
     if (zoom.amount<zoom.min) {zoom.amount=zoom.min;}
@@ -1577,7 +1579,7 @@ module.exports=function(zoom){
       var imageCoor=getImageCoordinates(e, zoom);
       zoom.x -= imageCoor.x;
       zoom.y -= imageCoor.y;
-      var coorOnImage=getLayerPositionOnImage(e, zoom, true);
+      var coorOnImage=getLayerPositionOnImage(e, zoom);
       console.log(coorOnImage);
       zoom.x -= oldCoorOnImage.x*zoomDelta;
       zoom.y -= oldCoorOnImage.y*zoomDelta;
@@ -1612,13 +1614,9 @@ module.exports=function(zoom){
     };
   }
 
-  function getLayerPositionOnImage (e, zoom, log){
+  function getLayerPositionOnImage (e, zoom){
     var imageCoor=getImageCoordinates(e, zoom),
         layer=getLayer(e);
-    if (log){
-      console.log(imageCoor);
-      console.log(layer);
-    }
     return {x:layer.x-imageCoor.x, y:layer.y-imageCoor.y}
   }
 

@@ -46,6 +46,8 @@ module.exports=function(zoom){
   function mousewheel(e){
     e.preventDefault();
     var oldCoorOnImage=getLayerPositionOnImage(e, zoom);
+    console.log(oldCoorOnImage);
+
     var zoomDelta=(e.wheelDeltaY<0) ? -1:1;///200;
     zoom.amount+=zoomDelta;
     if (zoom.amount<zoom.min) {zoom.amount=zoom.min;}
@@ -53,7 +55,7 @@ module.exports=function(zoom){
       var imageCoor=getImageCoordinates(e, zoom);
       zoom.x -= imageCoor.x;
       zoom.y -= imageCoor.y;
-      var coorOnImage=getLayerPositionOnImage(e, zoom, true);
+      var coorOnImage=getLayerPositionOnImage(e, zoom);
       console.log(coorOnImage);
       zoom.x -= oldCoorOnImage.x*zoomDelta;
       zoom.y -= oldCoorOnImage.y*zoomDelta;
@@ -88,13 +90,9 @@ module.exports=function(zoom){
     };
   }
 
-  function getLayerPositionOnImage (e, zoom, log){
+  function getLayerPositionOnImage (e, zoom){
     var imageCoor=getImageCoordinates(e, zoom),
         layer=getLayer(e);
-    if (log){
-      console.log(imageCoor);
-      console.log(layer);
-    }
     return {x:layer.x-imageCoor.x, y:layer.y-imageCoor.y}
   }
 
