@@ -1,14 +1,11 @@
 /* file could be split up if it becomes any more hecktic */
 
-$map-max-height:600px;
-$map-min-height:200px;
+$map-height:700px;
 
 #map {
   position:relative;
   //border:10px solid black;
-  height:100%;
-  max-height:$map-max-height;
-  min-height:$map-min-height;
+  height:$map-height;
   width:100%;
   overflow:hidden;
 }
@@ -36,9 +33,7 @@ $icon-height:30px;
 #map-scroller {
   position:relative;
   top:$icon-height;
-  height:100%;
-  min-height:$map-min-height;
-  max-height:$map-max-height;
+  height:$map-height - 56px;
   width:100%;
   background:linear-gradient(to left, white, #E6E6E6, white);
   overflow-x:hidden;
